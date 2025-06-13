@@ -1,24 +1,45 @@
-﻿namespace HerBaza
+﻿using System.Diagnostics;
+using System.Windows.Input;
+
+namespace HerBaza
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
 
         public MainPage()
-        {
+        {  
             InitializeComponent();
+            
+        }
+        protected override void OnAppearing()
+        {
+            LoadFromDB();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        async void Gotonext(object sender, EventArgs e)
         {
-            count++;
+            await Navigation.PushAsync(new ItemCreatePage());
+        }   
+        async void LoadFromDB()
+        {
+            itemsList.ItemsSource = await App.Database.GetItemsAsync();
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        async void OnDeleteClicked(object sender, EventArgs e)
+        {
+            var button = sender as ImageButton;
+            var item = button?.CommandParameter as Item;
+            if (item != null)
+            {
+                bool confirm = await DisplayAlert("Tasdiqlang", $"{item.Name} o‘chirishga ishonchingiz komilmi?", "Ha", "Yo‘q");
+                if (confirm)
+                {
+                    await App.Database.DeleteItemAsync(item);
+                    await DisplayAlert("O‘chirildi", $"{item.Name} muvaffaqiyatli o‘chirildi", "OK");
+                    LoadFromDB(); // Ro‘yxatni yangilash
+                }
+            }
         }
     }
 

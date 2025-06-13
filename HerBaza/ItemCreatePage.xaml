@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HerBaza.ItemCreatePage"
+             Title="          AzizaMexrClub💚"
+             Padding="30">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <Label Text="Tel Raqami" 
+               FontSize="18" 
+               HorizontalOptions="Start" 
+               Padding="0"
+               Margin="0"/>
+            <Entry x:Name="Phone"
+               Placeholder="Raqamingizni kiriting"
+               Keyboard="Telephone"
+               Margin="0"
+               ClearButtonVisibility="WhileEditing" />
+
+            <Label Text="Ismi" 
+                   FontSize="18" 
+                   HorizontalOptions="Start" 
+                   Padding="0"
+                   Margin="0"/>
+            <Entry  x:Name="Name"
+                    Placeholder="Ismingizni kiriting"
+                    Keyboard="Default"
+                    Margin="0"
+                    ClearButtonVisibility="WhileEditing" />
+
+            <Label Text="Familyasi" 
+                    FontSize="18" 
+                    HorizontalOptions="Start" 
+                    Padding="0"
+                    Margin="0"/>
+            <Entry x:Name="SureName"
+                    Placeholder="Familiyangizni kiriting"
+                    Keyboard="Default"
+                    Margin="0"
+                    ClearButtonVisibility="WhileEditing" />
+            
+            <Button Text="Saqlash" 
+                Clicked="SaveAndBack"
+                BackgroundColor="Green"
+                TextColor="White"
+                CornerRadius="10" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+
+</ContentPage>
